@@ -8,11 +8,8 @@
     5. 如果分母为负数，构造函数和重置函数setfrac要将其变为正数。（25分）
     ->分数类
 */
-
 #include <iostream>
-
 using namespace std;
-
 class fraction{
 private:
     int above;         //分子
@@ -25,12 +22,11 @@ public:
     void reduction();  //约分
     fraction add(fraction);      //两分数相加
     fraction div (fraction);      //两分数相除
-    void setfrac(int ,int); //重置分数
-    void display(); //显示分数
+    void setfrac(int ,int);		//重置分数
+    void display();				//显示分数
 };
 
-void fraction::display()
-{
+void fraction::display(){
     if(below<0){
         above=-above;
         below=-below;
@@ -51,10 +47,8 @@ fraction::fraction(){
 fraction::fraction(int a, int b=1):above(a),below(b){}
 
 int fraction::gcd(int a, int b){
-    if(a%b==0)
-        return b;
-    else
-        return gcd(b,a%b);
+    if(a%b==0) return b;
+    else return gcd(b,a%b);
 }
 //辗转相除法
 
@@ -63,11 +57,12 @@ int fraction::lcm(int a, int b){
 }
 
 void fraction::reduction(){
-    above = above / gcd(above,below);
-    below= below /gcd(above,below);
+    int gcd_of_a_b=gcd(above,below);
+    above = above / gcd_of_a_b;
+    below= below /gcd_of_a_b;
 }
-
 //将分母变为一致后再相加
+
 fraction fraction::add(fraction b){
     fraction result;
     result.below =below * b.below;
@@ -79,9 +74,7 @@ fraction fraction::add(fraction b){
 //除法转化为乘法
 fraction fraction::div(fraction b){
     fraction result;
-    result.above = above * b.below;
-    result.below = below *b.above;
-    result.reduction();
+    result.above = above * b.below;result.below = below *b.above;result.reduction();
     return result;
 }
 
@@ -91,51 +84,65 @@ void fraction::setfrac(int a, int b){
 }
 
 
-//->测试代码，测试结果应和输出样例中完全相同
-int main(){
+
+int main()
+{
     cout<<"--------测试构造函数-----------"<<endl;
+
     fraction f1(20,-9),f2(-7,-9),f3(5,-9);
-    cout<<"f1="; f1.display();
-    cout<<"f2="; f2.display();
-    cout<<"f3="; f3.display();
+    cout<<"f1=";	f1.display();
+    cout<<"f2=";	f2.display();
+    cout<<"f3=";	f3.display();
+
     cout<<"--------测试加法函数-----------"<<endl;
+
     f3=f1.add(f2);
-    cout<<"f1="; f1.display();
-    cout<<"f2="; f2.display();
+    cout<<"f1=";	f1.display();
+    cout<<"f2=";	f2.display();
     cout<<"f3=f1+f2=";f3.display();
+
     f1.setfrac(-3,-15);f2.setfrac(-10,12); f3=f1.add(f2);
-    cout<<"f1="; f1.display();
-    cout<<"f2="; f2.display();
+    cout<<"f1=";	f1.display();
+    cout<<"f2=";	f2.display();
     cout<<"f3=f1+f2=";f3.display();
-    f1.setfrac(12,45); f2.setfrac(19,-30); f3=f1.add(f2);
-    cout<<"f1="; f1.display();
-    cout<<"f2="; f2.display();
+
+    f1.setfrac(12,45);	f2.setfrac(19,-30);	f3=f1.add(f2);
+    cout<<"f1=";	f1.display();
+    cout<<"f2=";	f2.display();
     cout<<"f3=f1+f2=";f3.display();
-    f1.setfrac(3,5); f2.setfrac(-9,15); f3=f1.add(f2);
-    cout<<"f1="; f1.display();
-    cout<<"f2="; f2.display();
+
+    f1.setfrac(3,5);	f2.setfrac(-9,15);	f3=f1.add(f2);
+    cout<<"f1=";	f1.display();
+    cout<<"f2=";	f2.display();
     cout<<"f3=f1+f2=";f3.display();
+
     cout<<"--------测试除法函数-----------"<<endl;
-    f1.setfrac(-24,7); f2.setfrac(16,35); f3=f1.div(f2);
-    cout<<"f1="; f1.display();
-    cout<<"f2="; f2.display();
+
+    f1.setfrac(-24,7);	f2.setfrac(16,35);	f3=f1.div(f2);
+    cout<<"f1=";	f1.display();
+    cout<<"f2=";	f2.display();
     cout<<"f3=f1/f2=";f3.display();
-    f1.setfrac(33,-45); f2.setfrac(-11,20); f3=f1.div(f2);
-    cout<<"f1="; f1.display();
-    cout<<"f2="; f2.display();
+
+    f1.setfrac(33,-45);	f2.setfrac(-11,20);	f3=f1.div(f2);
+    cout<<"f1=";	f1.display();
+    cout<<"f2=";	f2.display();
     cout<<"f3=f1/f2=";f3.display();
-    f1.setfrac(12,35); f2.setfrac(-24,7); f3=f1.div(f2);
-    cout<<"f1="; f1.display();
-    cout<<"f2="; f2.display();
+
+    f1.setfrac(12,35);	f2.setfrac(-24,7);	f3=f1.div(f2);
+    cout<<"f1=";	f1.display();
+    cout<<"f2=";	f2.display();
     cout<<"f3=f1/f2=";f3.display();
-    f1.setfrac(-11,20); f2.setfrac(33,-50); f3=f1.div(f2);
-    cout<<"f1="; f1.display();
-    cout<<"f2="; f2.display();
+
+    f1.setfrac(-11,20);	f2.setfrac(33,-50);	f3=f1.div(f2);
+    cout<<"f1=";	f1.display();
+    cout<<"f2=";	f2.display();
     cout<<"f3=f1/f2=";f3.display();
+
     cout<<"------------测试结束------------"<<endl;
+
+
     return 0;
 }
-
 /*
     --------测试构造函数-----------
     f1=-20/9
