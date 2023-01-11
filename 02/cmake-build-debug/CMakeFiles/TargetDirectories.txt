@@ -1,0 +1,3 @@
+/Users/lucas/CLionProjects/MOOC/Chapter9/02/cmake-build-debug/CMakeFiles/02.dir
+/Users/lucas/CLionProjects/MOOC/Chapter9/02/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/lucas/CLionProjects/MOOC/Chapter9/02/cmake-build-debug/CMakeFiles/rebuild_cache.dir
